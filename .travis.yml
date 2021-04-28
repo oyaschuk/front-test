@@ -5,3 +5,12 @@ services:
 scripts:
   - docker build -t oyaschuk/front-test .
   - docker images oyaschuk/front-test
+
+before_deploy:
+  - docker login -u oyaschuk -p Rocket124
+
+deploy:
+  provider: script
+  script: docker push oyaschuk/front-test
+  on:
+    branch: master
